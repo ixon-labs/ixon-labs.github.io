@@ -6,80 +6,80 @@
     <title>IXON Labs | High-Performance Infrastructure</title>
     <style>
         :root { --accent: #00d4ff; --bg: #050505; --card: #111111; }
-        body { background-color: var(--bg); color: #e0e0e0; font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; overflow-x: hidden; }
+        body { background-color: var(--bg); color: #e0e0e0; font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; }
         
-        /* Fono efektas */
-        .bg-glow { position: absolute; width: 300px; height: 300px; background: var(--accent); filter: blur(150px); opacity: 0.1; z-index: -1; top: 20%; }
-
-        .logo { font-size: 4rem; font-weight: 900; color: #fff; letter-spacing: -2px; margin: 0; }
+        .logo { font-size: 3.5rem; font-weight: 900; color: #fff; letter-spacing: -2px; margin: 0; }
         .logo span { color: var(--accent); text-shadow: 0 0 20px var(--accent); }
-        .tagline { opacity: 0.5; letter-spacing: 3px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 40px; }
+        .tagline { opacity: 0.5; letter-spacing: 3px; text-transform: uppercase; font-size: 0.7rem; margin-bottom: 30px; }
 
-        .calc-card { background: var(--card); border: 1px solid #222; padding: 40px; border-radius: 24px; width: 100%; max-width: 400px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); position: relative; }
-        .calc-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+        .calc-card { background: var(--card); border: 1px solid #222; padding: 35px; border-radius: 24px; width: 100%; max-width: 380px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); text-align: center; }
 
-        h3 { margin-top: 0; font-size: 1.5rem; color: #fff; text-align: left; }
+        .slider-group { margin: 25px 0; text-align: left; }
+        .slider-header { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9rem; }
+        .slider-header span:last-child { color: var(--accent); font-weight: bold; }
 
-        .slider-group { margin: 30px 0; text-align: left; }
-        .slider-header { display: flex; justify-content: space-between; margin-bottom: 12px; font-weight: 500; }
-        .slider-header span:last-child { color: var(--accent); font-family: monospace; font-size: 1.1rem; }
+        input[type=range] { -webkit-appearance: none; width: 100%; background: #222; height: 5px; border-radius: 5px; outline: none; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: var(--accent); border-radius: 50%; cursor: pointer; box-shadow: 0 0 10px var(--accent); }
 
-        input[type=range] { -webkit-appearance: none; width: 100%; background: #222; height: 6px; border-radius: 5px; outline: none; }
-        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; background: var(--accent); border-radius: 50%; cursor: pointer; box-shadow: 0 0 10px var(--accent); transition: 0.2s; }
-        input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+        .price-area { background: rgba(255,255,255,0.02); padding: 15px; border-radius: 12px; margin: 25px 0; border: 1px solid rgba(255,255,255,0.05); }
+        .price { font-size: 2.5rem; color: #fff; font-weight: 800; }
+        .price small { font-size: 0.9rem; opacity: 0.5; }
 
-        .price-area { background: rgba(255,255,255,0.03); padding: 20px; border-radius: 16px; margin: 30px 0; }
-        .price { font-size: 3rem; color: #fff; font-weight: 800; display: block; }
-        .price small { font-size: 1rem; opacity: 0.5; font-weight: 400; }
+        .btn { background: var(--accent); color: #000; padding: 16px; border-radius: 12px; text-decoration: none; font-weight: bold; display: block; transition: 0.3s; margin-bottom: 15px; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4); }
 
-        .btn { background: var(--accent); color: #000; padding: 18px; border-radius: 12px; text-decoration: none; font-weight: bold; display: block; transition: 0.3s; text-align: center; font-size: 1.1rem; }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3); background: #fff; }
+        /* Socialiniai tinklai */
+        .socials { display: flex; gap: 20px; justify-content: center; margin-top: 30px; }
+        .social-link { transition: 0.3s; opacity: 0.6; }
+        .social-link:hover { opacity: 1; transform: scale(1.2); }
+        .social-link img { width: 28px; height: 28px; filter: invert(1); }
 
-        .features { display: flex; gap: 15px; margin-top: 25px; justify-content: center; font-size: 0.75rem; opacity: 0.4; }
+        .footer-info { margin-top: 20px; font-size: 0.7rem; opacity: 0.3; letter-spacing: 1px; }
     </style>
 </head>
 <body>
-    <div class="bg-glow"></div>
-    
     <div class="logo">IX<span>O</span>N</div>
     <div class="tagline">Labs Infrastructure</div>
 
     <div class="calc-card">
-        <h3>Server Configurator</h3>
-        
         <div class="slider-group">
-            <div class="slider-header"><span>RAM Memory</span><span id="ram-val">4 GB</span></div>
+            <div class="slider-header"><span>RAM</span><span id="ram-val">4 GB</span></div>
             <input type="range" min="2" max="64" value="4" id="ram-slider">
         </div>
-
         <div class="slider-group">
-            <div class="slider-header"><span>CPU Cores</span><span id="cpu-val">2 Cores</span></div>
-            <input type="range" min="1" max="16" value="2" id="cpu-slider">
+            <div class="slider-header"><span>CPU</span><span id="cpu-val">2 Cores</span></div>
+            <input type="range" min="1" max="12" value="2" id="cpu-slider">
         </div>
-
         <div class="slider-group">
-            <div class="slider-header"><span>NVMe Storage</span><span id="disk-val">40 GB</span></div>
-            <input type="range" min="10" max="500" step="10" value="40" id="disk-slider">
+            <div class="slider-header"><span>NVMe</span><span id="disk-val">40 GB</span></div>
+            <input type="range" min="10" max="400" step="10" value="40" id="disk-slider">
         </div>
 
         <div class="price-area">
             <span class="price" id="total-price">5.00€<small>/mėn</small></span>
         </div>
 
-        <a href="https://discord.gg/pZ2feXNJ34" class="btn">Deploy Instance</a>
+        <a href="https://discord.gg/pZ2feXNJ34" class="btn">Deploy Server</a>
         
-        <div class="features">
-            <span>● 99.9% Uptime</span>
-            <span>● NVMe SSD</span>
-            <span>● 24/7 Support</span>
+        <div class="socials">
+            <a href="https://discord.gg/pZ2feXNJ34" class="social-link" title="Discord">
+                <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord">
+            </a>
+            <a href="https://youtube.com" class="social-link" title="YouTube">
+                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+            </a>
+            <a href="https://tiktok.com" class="social-link" title="TikTok">
+                <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok">
+            </a>
         </div>
     </div>
+
+    <div class="footer-info">© 2024 IXON LABS • HIGH PERFORMANCE</div>
 
     <script>
         const ramS = document.getElementById('ram-slider');
         const cpuS = document.getElementById('cpu-slider');
         const diskS = document.getElementById('disk-slider');
-        
         const ramV = document.getElementById('ram-val');
         const cpuV = document.getElementById('cpu-val');
         const diskV = document.getElementById('disk-val');
@@ -89,31 +89,18 @@
             let ram = parseInt(ramS.value);
             let cpu = parseInt(cpuS.value);
             let disk = parseInt(diskS.value);
-
             ramV.innerText = ram + " GB";
             cpuV.innerText = cpu + (cpu === 1 ? " Core" : " Cores");
             diskV.innerText = disk + " GB";
 
-            // KAINODARA:
-            // Bazinė kaina: 2.00€
-            // RAM: 1.50€ už kiekvieną GB (virš bazinių 2GB)
-            // CPU: 2.00€ už kiekvieną Core (virš bazinio 1)
-            // DISK: 0.05€ už kiekvieną GB (virš bazinių 20GB)
-            
-            let basePrice = 2.00;
-            let ramCost = (ram - 2) * 1.50;
-            let cpuCost = (cpu - 1) * 2.00;
-            let diskCost = (disk - 20) * 0.05;
-            if(diskCost < 0) diskCost = 0;
-
-            let total = basePrice + ramCost + cpuCost + diskCost;
-            priceV.innerHTML = total.toFixed(2) + "€<small>/mėn</small>";
+            // Atnaujinta kainodara (labai pigi, bet pelninga)
+            let base = 2.00;
+            let total = base + (ram - 2) * 1.20 + (cpu - 1) * 1.50 + (disk - 20) * 0.03;
+            priceV.innerHTML = Math.max(total, base).toFixed(2) + "€<small>/mėn</small>";
         }
 
-        ramS.oninput = update;
-        cpuS.oninput = update;
-        diskS.oninput = update;
-        update(); // Paleidžiam iškart
+        ramS.oninput = update; cpuS.oninput = update; diskS.oninput = update;
+        update();
     </script>
 </body>
 </html>
