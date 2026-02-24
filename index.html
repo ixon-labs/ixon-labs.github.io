@@ -5,38 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IXON Labs | High-Performance Infrastructure</title>
     <style>
-        :root { --accent: #00d4ff; --bg: #050505; --card: #111111; }
-        body { background-color: var(--bg); color: #e0e0e0; font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; }
+        :root { --accent: #00d4ff; --bg: #050505; --card: rgba(17, 17, 17, 0.9); }
+        
+        body { 
+            background-color: var(--bg); 
+            /* Serverinės fono efektas */
+            background-image: linear-gradient(rgba(5, 5, 5, 0.8), rgba(5, 5, 5, 0.8)), 
+                              url('https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #e0e0e0; 
+            font-family: 'Segoe UI', sans-serif; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            min-height: 100vh; 
+            padding: 20px; 
+        }
         
         .logo { font-size: 3.5rem; font-weight: 900; color: #fff; letter-spacing: -2px; margin: 0; }
         .logo span { color: var(--accent); text-shadow: 0 0 20px var(--accent); }
-        .tagline { opacity: 0.5; letter-spacing: 3px; text-transform: uppercase; font-size: 0.7rem; margin-bottom: 30px; }
+        .tagline { opacity: 0.6; letter-spacing: 3px; text-transform: uppercase; font-size: 0.7rem; margin-bottom: 30px; }
 
-        .calc-card { background: var(--card); border: 1px solid #222; padding: 35px; border-radius: 24px; width: 100%; max-width: 380px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); text-align: center; position: relative; }
+        .calc-card { 
+            background: var(--card); 
+            backdrop-filter: blur(10px); /* Išplauna foną po kortele */
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            padding: 35px; 
+            border-radius: 24px; 
+            width: 100%; 
+            max-width: 380px; 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.8); 
+            text-align: center; 
+        }
 
         .slider-group { margin: 25px 0; text-align: left; }
         .slider-header { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9rem; }
         .slider-header span:last-child { color: var(--accent); font-weight: bold; }
 
-        input[type=range] { -webkit-appearance: none; width: 100%; background: #222; height: 5px; border-radius: 5px; outline: none; }
+        input[type=range] { -webkit-appearance: none; width: 100%; background: #333; height: 5px; border-radius: 5px; outline: none; }
         input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: var(--accent); border-radius: 50%; cursor: pointer; box-shadow: 0 0 10px var(--accent); }
 
-        .price-area { background: rgba(255,255,255,0.02); padding: 15px; border-radius: 12px; margin: 25px 0; border: 1px solid rgba(255,255,255,0.05); }
+        .price-area { background: rgba(0, 212, 255, 0.05); padding: 15px; border-radius: 12px; margin: 25px 0; border: 1px solid rgba(0, 212, 255, 0.2); }
         .price { font-size: 2.5rem; color: #fff; font-weight: 800; }
         .price small { font-size: 0.9rem; opacity: 0.5; }
 
         .btn { background: var(--accent); color: #000; padding: 16px; border-radius: 12px; text-decoration: none; font-weight: bold; display: block; transition: 0.3s; margin-bottom: 20px; }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4); }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(0, 212, 255, 0.5); background: #fff; }
 
         .contact-mail { font-size: 0.85rem; color: var(--accent); opacity: 0.8; text-decoration: none; display: block; margin-bottom: 20px; }
-        .contact-mail:hover { text-decoration: underline; }
 
-        .socials { display: flex; gap: 20px; justify-content: center; border-top: 1px solid #222; padding-top: 20px; }
-        .social-link { transition: 0.3s; opacity: 0.6; }
+        .socials { display: flex; gap: 20px; justify-content: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .social-link { transition: 0.3s; opacity: 0.7; }
         .social-link:hover { opacity: 1; transform: scale(1.2); }
         .social-link img { width: 24px; height: 24px; filter: invert(1); }
 
-        .footer-info { margin-top: 20px; font-size: 0.7rem; opacity: 0.3; letter-spacing: 1px; }
+        .footer-info { margin-top: 20px; font-size: 0.75rem; opacity: 0.5; letter-spacing: 1px; color: #fff; }
     </style>
 </head>
 <body>
@@ -58,7 +85,7 @@
         </div>
 
         <div class="price-area">
-            <span class="price" id="total-price">5.00€<small>/mėn</small></span>
+            <span class="price" id="total-price">3.60€<small>/mėn</small></span>
         </div>
 
         <a href="https://discord.gg/pZ2feXNJ34" class="btn">Deploy Server</a>
@@ -78,7 +105,7 @@
         </div>
     </div>
 
-    <div class="footer-info">© 2024 IXON LABS • HIGH PERFORMANCE</div>
+    <div class="footer-info">© 2026 IXON LABS • HIGH PERFORMANCE</div>
 
     <script>
         const ramS = document.getElementById('ram-slider');
@@ -98,15 +125,13 @@
             cpuV.innerText = cpu + (cpu === 1 ? " Core" : " Cores");
             diskV.innerText = disk + " GB";
 
-            // KAINODARA:
-            // Bazinė: 2.00€
-            // RAM: 1.20€ už GB virš 2GB
-            // CPU: 1.50€ už Core virš 1 Core
-            // DISK: 0.05€ už GB virš 20GB (50ct už 10GB)
-            let base = 2.00;
-            let ramCost = (ram - 2) * 1.20;
-            let cpuCost = (cpu - 1) * 1.50;
+            let base = 1.00;
+            let ramCost = (ram - 2) * 0.80;
+            let cpuCost = (cpu - 1) * 0.80;
             let diskCost = (disk - 20) * 0.05;
+
+            if(ramCost < 0) ramCost = 0;
+            if(cpuCost < 0) cpuCost = 0;
             if(diskCost < 0) diskCost = 0;
 
             let total = base + ramCost + cpuCost + diskCost;
