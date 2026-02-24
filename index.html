@@ -12,7 +12,7 @@
         .logo span { color: var(--accent); text-shadow: 0 0 20px var(--accent); }
         .tagline { opacity: 0.5; letter-spacing: 3px; text-transform: uppercase; font-size: 0.7rem; margin-bottom: 30px; }
 
-        .calc-card { background: var(--card); border: 1px solid #222; padding: 35px; border-radius: 24px; width: 100%; max-width: 380px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); text-align: center; }
+        .calc-card { background: var(--card); border: 1px solid #222; padding: 35px; border-radius: 24px; width: 100%; max-width: 380px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); text-align: center; position: relative; }
 
         .slider-group { margin: 25px 0; text-align: left; }
         .slider-header { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9rem; }
@@ -25,14 +25,16 @@
         .price { font-size: 2.5rem; color: #fff; font-weight: 800; }
         .price small { font-size: 0.9rem; opacity: 0.5; }
 
-        .btn { background: var(--accent); color: #000; padding: 16px; border-radius: 12px; text-decoration: none; font-weight: bold; display: block; transition: 0.3s; margin-bottom: 15px; }
+        .btn { background: var(--accent); color: #000; padding: 16px; border-radius: 12px; text-decoration: none; font-weight: bold; display: block; transition: 0.3s; margin-bottom: 20px; }
         .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4); }
 
-        /* Socialiniai tinklai */
-        .socials { display: flex; gap: 20px; justify-content: center; margin-top: 30px; }
+        .contact-mail { font-size: 0.85rem; color: var(--accent); opacity: 0.8; text-decoration: none; display: block; margin-bottom: 20px; }
+        .contact-mail:hover { text-decoration: underline; }
+
+        .socials { display: flex; gap: 20px; justify-content: center; border-top: 1px solid #222; padding-top: 20px; }
         .social-link { transition: 0.3s; opacity: 0.6; }
         .social-link:hover { opacity: 1; transform: scale(1.2); }
-        .social-link img { width: 28px; height: 28px; filter: invert(1); }
+        .social-link img { width: 24px; height: 24px; filter: invert(1); }
 
         .footer-info { margin-top: 20px; font-size: 0.7rem; opacity: 0.3; letter-spacing: 1px; }
     </style>
@@ -51,7 +53,7 @@
             <input type="range" min="1" max="12" value="2" id="cpu-slider">
         </div>
         <div class="slider-group">
-            <div class="slider-header"><span>NVMe</span><span id="disk-val">40 GB</span></div>
+            <div class="slider-header"><span>NVMe Storage</span><span id="disk-val">40 GB</span></div>
             <input type="range" min="10" max="400" step="10" value="40" id="disk-slider">
         </div>
 
@@ -61,14 +63,16 @@
 
         <a href="https://discord.gg/pZ2feXNJ34" class="btn">Deploy Server</a>
         
+        <a href="mailto:postlabss@gmail.com" class="contact-mail">postlabss@gmail.com</a>
+
         <div class="socials">
             <a href="https://discord.gg/pZ2feXNJ34" class="social-link" title="Discord">
                 <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord">
             </a>
-            <a href="https://youtube.com" class="social-link" title="YouTube">
+            <a href="https://www.youtube.com/channel/UCko62FnlIoBuI11F5iQjF6Q" class="social-link" title="YouTube">
                 <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
             </a>
-            <a href="https://tiktok.com" class="social-link" title="TikTok">
+            <a href="https://www.tiktok.com/@ixonlabs" class="social-link" title="TikTok">
                 <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok">
             </a>
         </div>
@@ -89,14 +93,24 @@
             let ram = parseInt(ramS.value);
             let cpu = parseInt(cpuS.value);
             let disk = parseInt(diskS.value);
+            
             ramV.innerText = ram + " GB";
             cpuV.innerText = cpu + (cpu === 1 ? " Core" : " Cores");
             diskV.innerText = disk + " GB";
 
-            // Atnaujinta kainodara (labai pigi, bet pelninga)
+            // KAINODARA:
+            // Bazinė: 2.00€
+            // RAM: 1.20€ už GB virš 2GB
+            // CPU: 1.50€ už Core virš 1 Core
+            // DISK: 0.05€ už GB virš 20GB (50ct už 10GB)
             let base = 2.00;
-            let total = base + (ram - 2) * 1.20 + (cpu - 1) * 1.50 + (disk - 20) * 0.03;
-            priceV.innerHTML = Math.max(total, base).toFixed(2) + "€<small>/mėn</small>";
+            let ramCost = (ram - 2) * 1.20;
+            let cpuCost = (cpu - 1) * 1.50;
+            let diskCost = (disk - 20) * 0.05;
+            if(diskCost < 0) diskCost = 0;
+
+            let total = base + ramCost + cpuCost + diskCost;
+            priceV.innerHTML = total.toFixed(2) + "€<small>/mėn</small>";
         }
 
         ramS.oninput = update; cpuS.oninput = update; diskS.oninput = update;
