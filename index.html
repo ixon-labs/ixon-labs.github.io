@@ -1,40 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="lt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IXON Labs | Next-Gen Infrastructure</title>
+    <title>IXON Labs | High-Performance Infrastructure</title>
     <style>
-        body { background-color: #0a0a0a; color: #e0e0e0; font-family: sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; }
-        .logo { font-size: 3.5rem; font-weight: 800; color: #fff; }
-        .logo span { color: #00d4ff; text-shadow: 0 0 15px #00d4ff; }
-        .calc-card { background: #111; border: 1px solid #222; padding: 30px; border-radius: 20px; width: 350px; text-align: center; }
-        .slider-group { margin: 20px 0; text-align: left; }
-        input[type=range] { width: 100%; accent-color: #00d4ff; }
-        .price { font-size: 2.5rem; color: #fff; margin: 20px 0; }
-        .btn { background: #00d4ff; color: #000; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; display: block; }
+        :root { --accent: #00d4ff; --bg: #050505; --card: #111111; }
+        body { background-color: var(--bg); color: #e0e0e0; font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; overflow-x: hidden; }
+        
+        /* Fono efektas */
+        .bg-glow { position: absolute; width: 300px; height: 300px; background: var(--accent); filter: blur(150px); opacity: 0.1; z-index: -1; top: 20%; }
+
+        .logo { font-size: 4rem; font-weight: 900; color: #fff; letter-spacing: -2px; margin: 0; }
+        .logo span { color: var(--accent); text-shadow: 0 0 20px var(--accent); }
+        .tagline { opacity: 0.5; letter-spacing: 3px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 40px; }
+
+        .calc-card { background: var(--card); border: 1px solid #222; padding: 40px; border-radius: 24px; width: 100%; max-width: 400px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); position: relative; }
+        .calc-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+
+        h3 { margin-top: 0; font-size: 1.5rem; color: #fff; text-align: left; }
+
+        .slider-group { margin: 30px 0; text-align: left; }
+        .slider-header { display: flex; justify-content: space-between; margin-bottom: 12px; font-weight: 500; }
+        .slider-header span:last-child { color: var(--accent); font-family: monospace; font-size: 1.1rem; }
+
+        input[type=range] { -webkit-appearance: none; width: 100%; background: #222; height: 6px; border-radius: 5px; outline: none; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; background: var(--accent); border-radius: 50%; cursor: pointer; box-shadow: 0 0 10px var(--accent); transition: 0.2s; }
+        input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+
+        .price-area { background: rgba(255,255,255,0.03); padding: 20px; border-radius: 16px; margin: 30px 0; }
+        .price { font-size: 3rem; color: #fff; font-weight: 800; display: block; }
+        .price small { font-size: 1rem; opacity: 0.5; font-weight: 400; }
+
+        .btn { background: var(--accent); color: #000; padding: 18px; border-radius: 12px; text-decoration: none; font-weight: bold; display: block; transition: 0.3s; text-align: center; font-size: 1.1rem; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3); background: #fff; }
+
+        .features { display: flex; gap: 15px; margin-top: 25px; justify-content: center; font-size: 0.75rem; opacity: 0.4; }
     </style>
 </head>
 <body>
+    <div class="bg-glow"></div>
+    
     <div class="logo">IX<span>O</span>N</div>
-    <p>Labs Infrastructure</p>
+    <div class="tagline">Labs Infrastructure</div>
+
     <div class="calc-card">
+        <h3>Server Configurator</h3>
+        
         <div class="slider-group">
-            <label>RAM: <span id="ram-val">6</span> GB</label>
-            <input type="range" min="2" max="32" value="6" id="ram-slider">
+            <div class="slider-header"><span>RAM Memory</span><span id="ram-val">4 GB</span></div>
+            <input type="range" min="2" max="64" value="4" id="ram-slider">
         </div>
-        <div class="price"><span id="total-price">0.00</span>€</div>
-        <a href="https://discord.gg/pZ2feXNJ34" class="btn">Užsakyti per Discord</a>
+
+        <div class="slider-group">
+            <div class="slider-header"><span>CPU Cores</span><span id="cpu-val">2 Cores</span></div>
+            <input type="range" min="1" max="16" value="2" id="cpu-slider">
+        </div>
+
+        <div class="slider-group">
+            <div class="slider-header"><span>NVMe Storage</span><span id="disk-val">40 GB</span></div>
+            <input type="range" min="10" max="500" step="10" value="40" id="disk-slider">
+        </div>
+
+        <div class="price-area">
+            <span class="price" id="total-price">5.00€<small>/mėn</small></span>
+        </div>
+
+        <a href="https://discord.gg/pZ2feXNJ34" class="btn">Deploy Instance</a>
+        
+        <div class="features">
+            <span>● 99.9% Uptime</span>
+            <span>● NVMe SSD</span>
+            <span>● 24/7 Support</span>
+        </div>
     </div>
+
     <script>
         const ramS = document.getElementById('ram-slider');
+        const cpuS = document.getElementById('cpu-slider');
+        const diskS = document.getElementById('disk-slider');
+        
         const ramV = document.getElementById('ram-val');
-        const price = document.getElementById('total-price');
-        ramS.oninput = function() {
-            ramV.innerText = this.value;
-            let cost = this.value <= 6 ? 0 : (this.value - 6) * 1.5;
-            price.innerText = cost.toFixed(2);
+        const cpuV = document.getElementById('cpu-val');
+        const diskV = document.getElementById('disk-val');
+        const priceV = document.getElementById('total-price');
+
+        function update() {
+            let ram = parseInt(ramS.value);
+            let cpu = parseInt(cpuS.value);
+            let disk = parseInt(diskS.value);
+
+            ramV.innerText = ram + " GB";
+            cpuV.innerText = cpu + (cpu === 1 ? " Core" : " Cores");
+            diskV.innerText = disk + " GB";
+
+            // KAINODARA:
+            // Bazinė kaina: 2.00€
+            // RAM: 1.50€ už kiekvieną GB (virš bazinių 2GB)
+            // CPU: 2.00€ už kiekvieną Core (virš bazinio 1)
+            // DISK: 0.05€ už kiekvieną GB (virš bazinių 20GB)
+            
+            let basePrice = 2.00;
+            let ramCost = (ram - 2) * 1.50;
+            let cpuCost = (cpu - 1) * 2.00;
+            let diskCost = (disk - 20) * 0.05;
+            if(diskCost < 0) diskCost = 0;
+
+            let total = basePrice + ramCost + cpuCost + diskCost;
+            priceV.innerHTML = total.toFixed(2) + "€<small>/mėn</small>";
         }
+
+        ramS.oninput = update;
+        cpuS.oninput = update;
+        diskS.oninput = update;
+        update(); // Paleidžiam iškart
     </script>
 </body>
 </html>
