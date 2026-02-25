@@ -3,143 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IXON Labs | High-Performance Infrastructure</title>
+    <title>IXON Labs | Future Hosting</title>
     <style>
-        :root { --accent: #00d4ff; --bg: #050505; --card: rgba(17, 17, 17, 0.9); }
-        
-        body { 
-            background-color: var(--bg); 
-            /* Serverinės fono efektas */
-            background-image: linear-gradient(rgba(5, 5, 5, 0.8), rgba(5, 5, 5, 0.8)), 
-                              url('https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=2000&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: #e0e0e0; 
-            font-family: 'Segoe UI', sans-serif; 
-            margin: 0; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            min-height: 100vh; 
-            padding: 20px; 
+        :root {
+            --primary: #8a2be2;
+            --secondary: #00ffcc;
+            --bg: #0a0a0c;
+            --glass: rgba(255, 255, 255, 0.05);
         }
-        
-        .logo { font-size: 3.5rem; font-weight: 900; color: #fff; letter-spacing: -2px; margin: 0; }
-        .logo span { color: var(--accent); text-shadow: 0 0 20px var(--accent); }
-        .tagline { opacity: 0.6; letter-spacing: 3px; text-transform: uppercase; font-size: 0.7rem; margin-bottom: 30px; }
 
-        .calc-card { 
-            background: var(--card); 
-            backdrop-filter: blur(10px); /* Išplauna foną po kortele */
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            padding: 35px; 
-            border-radius: 24px; 
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- LANDING SEKCIJA --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .glow {
+            position: absolute;
+            width: 400px; height: 400px;
+            background: var(--primary);
+            filter: blur(180px);
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        .split-selection {
+            display: flex;
+            gap: 25px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            padding: 40px;
+            border-radius: 24px;
+            width: 280px;
+            cursor: pointer;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card:hover { 
+            transform: translateY(-12px); 
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(138, 43, 226, 0.2);
+        }
+
+        .btn {
+            margin-top: 20px;
+            padding: 12px 24px;
+            background: var(--primary);
+            border: none;
+            color: white;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .btn-alt {
+            background: var(--secondary);
+            color: black;
+        }
+
+        /* --- SEKCIJŲ STILIUS --- */
+        .section {
+            min-height: 100vh;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .pricing-grid {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .plan {
+            background: rgba(255,255,255,0.02);
+            padding: 35px;
+            border-radius: 20px;
+            width: 240px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* --- SKAIČIUOKLĖ --- */
+        .slider-box {
+            background: var(--glass);
+            padding: 40px;
+            border-radius: 30px;
+            width: 100%;
+            max-width: 450px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .control-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        input[type="range"] { 
             width: 100%; 
-            max-width: 380px; 
-            box-shadow: 0 25px 50px rgba(0,0,0,0.8); 
-            text-align: center; 
+            accent-color: var(--secondary);
+            cursor: pointer;
         }
 
-        .slider-group { margin: 25px 0; text-align: left; }
-        .slider-header { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9rem; }
-        .slider-header span:last-child { color: var(--accent); font-weight: bold; }
-
-        input[type=range] { -webkit-appearance: none; width: 100%; background: #333; height: 5px; border-radius: 5px; outline: none; }
-        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: var(--accent); border-radius: 50%; cursor: pointer; box-shadow: 0 0 10px var(--accent); }
-
-        .price-area { background: rgba(0, 212, 255, 0.05); padding: 15px; border-radius: 12px; margin: 25px 0; border: 1px solid rgba(0, 212, 255, 0.2); }
-        .price { font-size: 2.5rem; color: #fff; font-weight: 800; }
-        .price small { font-size: 0.9rem; opacity: 0.5; }
-
-        .btn { background: var(--accent); color: #000; padding: 16px; border-radius: 12px; text-decoration: none; font-weight: bold; display: block; transition: 0.3s; margin-bottom: 20px; }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(0, 212, 255, 0.5); background: #fff; }
-
-        .contact-mail { font-size: 0.85rem; color: var(--accent); opacity: 0.8; text-decoration: none; display: block; margin-bottom: 20px; }
-
-        .socials { display: flex; gap: 20px; justify-content: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
-        .social-link { transition: 0.3s; opacity: 0.7; }
-        .social-link:hover { opacity: 1; transform: scale(1.2); }
-        .social-link img { width: 24px; height: 24px; filter: invert(1); }
-
-        .footer-info { margin-top: 20px; font-size: 0.75rem; opacity: 0.5; letter-spacing: 1px; color: #fff; }
+        .price-display {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin: 20px 0;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-    <div class="logo">IX<span>O</span>N</div>
-    <div class="tagline">Labs Infrastructure</div>
 
-    <div class="calc-card">
-        <div class="slider-group">
-            <div class="slider-header"><span>RAM</span><span id="ram-val">4 GB</span></div>
-            <input type="range" min="2" max="64" value="4" id="ram-slider">
-        </div>
-        <div class="slider-group">
-            <div class="slider-header"><span>CPU</span><span id="cpu-val">2 Cores</span></div>
-            <input type="range" min="1" max="12" value="2" id="cpu-slider">
-        </div>
-        <div class="slider-group">
-            <div class="slider-header"><span>NVMe Storage</span><span id="disk-val">40 GB</span></div>
-            <input type="range" min="10" max="400" step="10" value="40" id="disk-slider">
-        </div>
+    <div class="glow" style="top: 10%; left: 15%;"></div>
+    <div class="glow" style="bottom: 10%; right: 15%; background: var(--secondary);"></div>
 
-        <div class="price-area">
-            <span class="price" id="total-price">3.60€<small>/mėn</small></span>
-        </div>
-
-        <a href="https://discord.gg/pZ2feXNJ34" class="btn">Deploy Server</a>
+    <section class="hero">
+        <h1>IXON <span style="color: var(--primary);">LABS</span></h1>
+        <p style="opacity: 0.6; letter-spacing: 1px;">Aukščiausios kokybės infrastruktūra tavo vizijoms.</p>
         
-        <a href="mailto:postlabss@gmail.com" class="contact-mail">postlabss@gmail.com</a>
-
-        <div class="socials">
-            <a href="https://discord.gg/pZ2feXNJ34" class="social-link" title="Discord">
-                <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord">
-            </a>
-            <a href="https://www.youtube.com/channel/UCko62FnlIoBuI11F5iQjF6Q" class="social-link" title="YouTube">
-                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
-            </a>
-            <a href="https://www.tiktok.com/@ixonlabs" class="social-link" title="TikTok">
-                <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok">
-            </a>
+        <div class="split-selection">
+            <div class="card" onclick="document.getElementById('plans').scrollIntoView()">
+                <h2 style="margin: 0; color: var(--secondary);">Greitas Startas</h2>
+                <p>Paruošti planai skubantiems.</p>
+                <button class="btn">Peržiūrėti</button>
+            </div>
+            <div class="card" onclick="document.getElementById('customizer').scrollIntoView()">
+                <h2 style="margin: 0; color: var(--primary);">Customizer</h2>
+                <p>Konfigūruok resursus pats.</p>
+                <button class="btn btn-alt">Kurti planą</button>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div class="footer-info">© 2026 IXON LABS • HIGH PERFORMANCE</div>
+    <section id="plans" class="section">
+        <h2 style="text-transform: uppercase; letter-spacing: 3px;">Standartiniai Planai</h2>
+        <div class="pricing-grid">
+            <div class="plan">
+                <h3 style="color: var(--secondary);">LITE</h3>
+                <p>4GB RAM / 1 Core</p>
+                <h2 style="margin: 15px 0;">5.00€</h2>
+                <button class="btn">Užsakyti</button>
+            </div>
+            <div class="plan" style="border-color: var(--primary); background: rgba(138, 43, 226, 0.05);">
+                <h3 style="color: var(--primary);">ULTRA</h3>
+                <p>8GB RAM / 2 Cores</p>
+                <h2 style="margin: 15px 0;">9.00€</h2>
+                <button class="btn">Užsakyti</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="customizer" class="section">
+        <h2 style="text-transform: uppercase; letter-spacing: 3px;">IXON Customizer</h2>
+        <div class="slider-box">
+            
+            <div class="control-group">
+                <label>CPU Galia: <span id="cpuVal" style="color: var(--secondary);">0.5</span> Core</label>
+                <input type="range" min="0.5" max="4" step="0.5" value="0.5" oninput="calculatePrice()" id="cpuInput">
+            </div>
+
+            <div class="control-group">
+                <label>RAM Kiekis: <span id="ramDisplay" style="color: var(--secondary);">1</span> GB</label>
+                <input type="range" min="1" max="16" value="1" oninput="calculatePrice()" id="ramInput">
+            </div>
+
+            <div class="control-group">
+                <label>Storage: <span id="storageDisplay" style="color: var(--secondary);">5</span> GB</label>
+                <input type="range" min="5" max="100" step="5" value="5" oninput="calculatePrice()" id="storageInput">
+            </div>
+
+            <div class="price-display"><span id="totalPrice">1.50</span>€</div>
+            <p style="font-size: 0.8rem; opacity: 0.5; margin-bottom: 20px;">Kaina apskaičiuota mėnesio laikotarpiui.</p>
+            <button class="btn btn-alt" style="font-size: 1.1rem; padding: 15px;">Tęsti užsakymą</button>
+        </div>
+    </section>
 
     <script>
-        const ramS = document.getElementById('ram-slider');
-        const cpuS = document.getElementById('cpu-slider');
-        const diskS = document.getElementById('disk-slider');
-        const ramV = document.getElementById('ram-val');
-        const cpuV = document.getElementById('cpu-val');
-        const diskV = document.getElementById('disk-val');
-        const priceV = document.getElementById('total-price');
+        function calculatePrice() {
+            const cpu = parseFloat(document.getElementById('cpuInput').value);
+            const ram = parseInt(document.getElementById('ramInput').value);
+            const storage = parseInt(document.getElementById('storageInput').value);
 
-        function update() {
-            let ram = parseInt(ramS.value);
-            let cpu = parseInt(cpuS.value);
-            let disk = parseInt(diskS.value);
-            
-            ramV.innerText = ram + " GB";
-            cpuV.innerText = cpu + (cpu === 1 ? " Core" : " Cores");
-            diskV.innerText = disk + " GB";
+            document.getElementById('cpuVal').innerText = cpu;
+            document.getElementById('ramDisplay').innerText = ram;
+            document.getElementById('storageDisplay').innerText = storage;
 
-            let base = 1.00;
-            let ramCost = (ram - 2) * 0.80;
-            let cpuCost = (cpu - 1) * 0.80;
-            let diskCost = (disk - 20) * 0.05;
+            // KAINODAROS LOGIKA
+            const basePrice = 1.00; 
+            const cpuExtra = (cpu - 0.5) * 2.00;   
+            const ramExtra = (ram - 1) * 1.20;     
+            const storageExtra = (storage - 5) * 0.10; 
 
-            if(ramCost < 0) ramCost = 0;
-            if(cpuCost < 0) cpuCost = 0;
-            if(diskCost < 0) diskCost = 0;
-
-            let total = base + ramCost + cpuCost + diskCost;
-            priceV.innerHTML = total.toFixed(2) + "€<small>/mėn</small>";
+            const total = basePrice + cpuExtra + ramExtra + storageExtra;
+            document.getElementById('totalPrice').innerText = total.toFixed(2);
         }
-
-        ramS.oninput = update; cpuS.oninput = update; diskS.oninput = update;
-        update();
     </script>
+
 </body>
 </html>
