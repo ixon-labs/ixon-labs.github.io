@@ -44,14 +44,9 @@
             padding: 0 20px;
         }
 
-        .nav-links {
+        .nav-links, .social-links {
             display: flex;
             gap: 25px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
         }
 
         .nav-link {
@@ -142,6 +137,10 @@
             transition: 0.3s;
             width: 100%;
             box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+            text-decoration: none;
+            display: inline-block;
+            box-sizing: border-box;
+            text-align: center;
         }
 
         .btn:hover {
@@ -233,7 +232,6 @@
             gap: 20px;
             margin-top: 20px;
         }
-
     </style>
 </head>
 <body>
@@ -254,7 +252,6 @@
     </nav>
 
     <div class="glow" style="top: 15%; left: 10%;"></div>
-    <div class="glow" style="bottom: 10%; right: 5%;"></div>
 
     <section class="hero">
         <h1>IXON <span style="color: var(--accent);">LABS</span></h1>
@@ -280,14 +277,14 @@
             <div class="plan">
                 <h3 style="color: var(--accent);">STARTER</h3>
                 <p>4GB RAM / 1 CPU Core</p>
-                <h2 style="margin: 20px 0;">€5.00</h2>
-                <button class="btn">Deploy Now</button>
+                <h2 style="margin: 20px 0;">€4.00</h2>
+                <a href="https://discord.gg/pZ2feXNJ34" target="_blank" class="btn">Deploy Now</a>
             </div>
             <div class="plan" style="border-color: var(--accent); background: rgba(138, 43, 226, 0.15);">
                 <h3 style="color: var(--accent);">ULTRA</h3>
                 <p>8GB RAM / 2 CPU Cores</p>
-                <h2 style="margin: 20px 0;">€9.00</h2>
-                <button class="btn">Deploy Now</button>
+                <h2 style="margin: 20px 0;">€7.50</h2>
+                <a href="https://discord.gg/pZ2feXNJ34" target="_blank" class="btn">Deploy Now</a>
             </div>
         </div>
     </section>
@@ -311,9 +308,9 @@
                 <input type="range" min="5" max="100" step="5" value="5" oninput="updatePrice()" id="storageInput">
             </div>
 
-            <div class="price-display">€<span id="totalPrice">1.50</span></div>
+            <div class="price-display">€<span id="totalPrice">0.80</span></div>
             <p style="opacity: 0.5; font-size: 0.8rem;">Monthly billing cycle. 99.9% Uptime guaranteed.</p>
-            <button class="btn">Purchase Server</button>
+            <a href="https://discord.gg/pZ2feXNJ34" target="_blank" class="btn" style="padding: 20px;">Purchase Server</a>
 
             <span class="bonus-text">✨ Get +5GB Storage for a 5-star review!</span>
         </div>
@@ -339,14 +336,20 @@
             document.getElementById('ramDisplay').innerText = ram;
             document.getElementById('storageDisplay').innerText = storage;
 
-            const base = 1.00;
-            const cpuCost = (cpu - 0.5) * 2.00;
-            const ramCost = (ram - 1) * 1.20;
+            // NAUJOS SUMAŽINTOS KAINOS LOGIKA
+            const base = 0.80; 
+            const cpuCost = (cpu - 0.5) * 1.50; 
+            const ramCost = (ram - 1) * 0.90;   
             const storageCost = (storage - 5) * 0.10;
 
             const total = base + cpuCost + ramCost + storageCost;
             document.getElementById('totalPrice').innerText = total.toFixed(2);
         }
+
+        // Užtikrina, kad kaina persiskaičiuotų puslapiui užsikrovus
+        window.onload = function() {
+            updatePrice();
+        };
     </script>
 
 </body>
