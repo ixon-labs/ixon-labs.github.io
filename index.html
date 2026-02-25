@@ -242,11 +242,12 @@
                 <a class="nav-link" onclick="window.scrollTo(0,0)">Home</a>
                 <a class="nav-link" onclick="document.getElementById('plans').scrollIntoView()">Products</a>
                 <a class="nav-link" onclick="document.getElementById('customizer').scrollIntoView()">Customizer</a>
+                <a class="nav-link" onclick="document.getElementById('tos').scrollIntoView()">ToS</a>
             </div>
             <div class="social-links">
                 <a href="https://discord.gg/pZ2feXNJ34" target="_blank" class="nav-link">Discord</a>
                 <a href="https://www.tiktok.com/@ixonlabs" target="_blank" class="nav-link">TikTok</a>
-                <a href="https://www.youtube.com/@Ixon-labs" target="_blank" class="nav-link">YouTube</a>
+                <a href="https://www.trustpilot.com/review/ixon-labs.github.io" target="_blank" class="nav-link">Reviews</a>
             </div>
         </div>
     </nav>
@@ -316,13 +317,41 @@
         </div>
     </section>
 
+    <section id="tos" class="section" style="min-height: auto; padding-top: 50px;">
+        <div class="slider-box" style="max-width: 800px; text-align: left;">
+            <h2 style="color: var(--accent); text-align: center; letter-spacing: 3px;">TERMS OF SERVICE</h2>
+            
+            <div style="margin-top: 30px; font-size: 0.9rem; line-height: 1.6; opacity: 0.9;">
+                <h3 style="color: var(--accent);">1. ACCEPTABLE USE / TINKAMAS NAUDOJIMAS</h3>
+                <p>• EN: No illegal activities (DDoS, mining, malware). Failure to comply results in immediate suspension.<br>
+                   • LT: Draudžiama nelegali veikla (DDoS, mining, virusai). Pažeidus taisykles, paslaugos stabdomos iškart.</p>
+
+                <h3 style="color: var(--accent);">2. PAYMENTS / APMOKĖJIMAS</h3>
+                <p>• EN: All payments are final. Refunds are only issued if the fault is on our side.<br>
+                   • LT: Visi mokėjimai galutiniai. Grąžinimai galimi tik esant mūsų techninei kaltei.</p>
+
+                <h3 style="color: var(--accent);">3. DATA & BACKUPS / DUOMENYS</h3>
+                <p>• EN: Users are responsible for their own backups. IXON Labs is not liable for data loss.<br>
+                   • LT: Vartotojai patys atsako už atsargines kopijas. IXON Labs neatsako už prarastus duomenis.</p>
+
+                <h3 style="color: var(--accent);">4. TERMINATION / NUTRAUKIMAS</h3>
+                <p>• EN: We reserve the right to terminate services for any violation of these terms.<br>
+                   • LT: Pasiliekame teisę nutraukti paslaugas už bet kokį taisyklių pažeidimą.</p>
+            </div>
+            
+            <p style="text-align: center; margin-top: 30px; font-size: 0.8rem; opacity: 0.5;">
+                Last updated: February 2026
+            </p>
+        </div>
+    </section>
+
     <footer>
         <p>© 2026 IXON Labs. All rights reserved.</p>
         <p style="opacity: 0.7; font-size: 0.9rem;">Contact: <a href="mailto:ixonlabs@gmail.com" style="color: var(--accent); text-decoration: none;">ixonlabs@gmail.com</a></p>
         <div class="footer-socials">
             <a href="https://www.tiktok.com/@ixonlabs" target="_blank" class="nav-link">TikTok</a>
             <a href="https://discord.gg/pZ2feXNJ34" target="_blank" class="nav-link">Discord</a>
-            <a href="https://www.youtube.com/@Ixon-labs" target="_blank" class="nav-link">YouTube</a>
+            <a href="https://www.trustpilot.com/review/ixon-labs.github.io" target="_blank" class="nav-link">Trustpilot</a>
         </div>
     </footer>
 
@@ -336,7 +365,7 @@
             document.getElementById('ramDisplay').innerText = ram;
             document.getElementById('storageDisplay').innerText = storage;
 
-            // NAUJOS SUMAŽINTOS KAINOS LOGIKA
+            // KAINOS LOGIKA
             const base = 0.80; 
             const cpuCost = (cpu - 0.5) * 1.50; 
             const ramCost = (ram - 1) * 0.90;   
@@ -346,7 +375,6 @@
             document.getElementById('totalPrice').innerText = total.toFixed(2);
         }
 
-        // Užtikrina, kad kaina persiskaičiuotų puslapiui užsikrovus
         window.onload = function() {
             updatePrice();
         };
