@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="lt">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IXON Labs | Future Hosting</title>
+    <title>IXON Labs | Next-Gen Hosting</title>
     <style>
         :root {
-            --primary: #8a2be2;
-            --secondary: #00ffcc;
-            --bg: #0a0a0c;
-            --glass: rgba(255, 255, 255, 0.05);
+            --primary: #8a2be2; /* Deep Violet */
+            --accent: #bc13fe;  /* Bright Purple */
+            --bg: #050505;
+            --glass: rgba(138, 43, 226, 0.08);
+            --border: rgba(138, 43, 226, 0.2);
         }
 
         html { scroll-behavior: smooth; }
@@ -22,7 +23,53 @@
             overflow-x: hidden;
         }
 
-        /* --- LANDING SEKCIJA --- */
+        /* --- STICKY NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        /* --- BACKGROUND GLOWS --- */
+        .glow {
+            position: absolute;
+            width: 500px; height: 500px;
+            background: var(--primary);
+            filter: blur(200px);
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        /* --- HERO SECTION --- */
         .hero {
             height: 100vh;
             display: flex;
@@ -30,192 +77,207 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            position: relative;
+            padding-top: 60px;
         }
 
-        .glow {
-            position: absolute;
-            width: 400px; height: 400px;
-            background: var(--primary);
-            filter: blur(180px);
-            opacity: 0.15;
-            z-index: -1;
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            letter-spacing: 5px;
+            text-shadow: 0 0 20px var(--primary);
+        }
+
+        .hero p {
+            opacity: 0.6;
+            margin-bottom: 40px;
         }
 
         .split-selection {
             display: flex;
-            gap: 25px;
-            margin-top: 50px;
+            gap: 30px;
             flex-wrap: wrap;
             justify-content: center;
         }
 
+        /* --- GLASS TABLES (CARDS) --- */
         .card {
             background: var(--glass);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            padding: 40px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(15px);
+            padding: 45px;
             border-radius: 24px;
-            width: 280px;
+            width: 300px;
             cursor: pointer;
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .card:hover { 
-            transform: translateY(-12px); 
-            border-color: var(--primary);
-            box-shadow: 0 10px 40px rgba(138, 43, 226, 0.2);
+        .card:hover {
+            transform: translateY(-15px);
+            border-color: var(--accent);
+            box-shadow: 0 0 40px rgba(138, 43, 226, 0.25);
         }
 
+        /* --- VIOLET BUTTONS --- */
         .btn {
-            margin-top: 20px;
-            padding: 12px 24px;
+            margin-top: 25px;
+            padding: 15px 30px;
             background: var(--primary);
             border: none;
             color: white;
-            border-radius: 8px;
+            border-radius: 12px;
             font-weight: bold;
+            text-transform: uppercase;
             cursor: pointer;
             transition: 0.3s;
             width: 100%;
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
         }
 
-        .btn-alt {
-            background: var(--secondary);
-            color: black;
+        .btn:hover {
+            background: var(--accent);
+            box-shadow: 0 0 25px var(--accent);
+            transform: scale(1.02);
         }
 
-        /* --- SEKCIJŲ STILIUS --- */
+        /* --- SECTIONS --- */
         .section {
             min-height: 100vh;
-            padding: 80px 20px;
+            padding: 100px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
         .pricing-grid {
             display: flex;
             gap: 30px;
-            margin-top: 40px;
+            margin-top: 50px;
             flex-wrap: wrap;
             justify-content: center;
         }
 
         .plan {
-            background: rgba(255,255,255,0.02);
-            padding: 35px;
-            border-radius: 20px;
-            width: 240px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        /* --- SKAIČIUOKLĖ --- */
-        .slider-box {
             background: var(--glass);
             padding: 40px;
+            border-radius: 24px;
+            width: 260px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .plan:hover { border-color: var(--accent); }
+
+        /* --- CUSTOMIZER BOX --- */
+        .slider-box {
+            background: var(--glass);
+            padding: 50px;
             border-radius: 30px;
             width: 100%;
-            max-width: 450px;
-            border: 1px solid rgba(255,255,255,0.1);
+            max-width: 500px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
         }
 
         .control-group {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             text-align: left;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-            opacity: 0.8;
         }
 
         input[type="range"] { 
             width: 100%; 
-            accent-color: var(--secondary);
+            accent-color: var(--accent);
             cursor: pointer;
+            margin-top: 10px;
         }
 
         .price-display {
-            font-size: 3rem;
-            color: var(--secondary);
+            font-size: 4rem;
+            color: var(--accent);
             margin: 20px 0;
             font-weight: bold;
+            text-shadow: 0 0 20px rgba(188, 19, 254, 0.4);
         }
+
+        hr { border: 0.5px solid var(--border); margin: 30px 0; }
     </style>
 </head>
 <body>
 
-    <div class="glow" style="top: 10%; left: 15%;"></div>
-    <div class="glow" style="bottom: 10%; right: 15%; background: var(--secondary);"></div>
+    <nav>
+        <div class="nav-container">
+            <a class="nav-link" onclick="window.scrollTo(0,0)">Home</a>
+            <a class="nav-link" onclick="document.getElementById('plans').scrollIntoView()">Products</a>
+            <a class="nav-link" onclick="document.getElementById('customizer').scrollIntoView()">Customizer</a>
+        </div>
+    </nav>
+
+    <div class="glow" style="top: 15%; left: 10%;"></div>
+    <div class="glow" style="bottom: 10%; right: 5%;"></div>
 
     <section class="hero">
-        <h1>IXON <span style="color: var(--primary);">LABS</span></h1>
-        <p style="opacity: 0.6; letter-spacing: 1px;">Aukščiausios kokybės infrastruktūra tavo vizijoms.</p>
+        <h1>IXON <span style="color: var(--accent);">LABS</span></h1>
+        <p>Premium Infrastructure Solutions For 2026 Projects</p>
         
         <div class="split-selection">
             <div class="card" onclick="document.getElementById('plans').scrollIntoView()">
-                <h2 style="margin: 0; color: var(--secondary);">Greitas Startas</h2>
-                <p>Paruošti planai skubantiems.</p>
-                <button class="btn">Peržiūrėti</button>
+                <h2 style="color: var(--accent);">PRESET PLANS</h2>
+                <p>Ready-to-use hosting servers for a quick start.</p>
+                <button class="btn">View Plans</button>
             </div>
             <div class="card" onclick="document.getElementById('customizer').scrollIntoView()">
-                <h2 style="margin: 0; color: var(--primary);">Customizer</h2>
-                <p>Konfigūruok resursus pats.</p>
-                <button class="btn btn-alt">Kurti planą</button>
+                <h2 style="color: var(--accent);">CUSTOMIZER</h2>
+                <p>Build your own infrastructure from scratch.</p>
+                <button class="btn">Configure</button>
             </div>
         </div>
     </section>
 
     <section id="plans" class="section">
-        <h2 style="text-transform: uppercase; letter-spacing: 3px;">Standartiniai Planai</h2>
+        <h2 style="letter-spacing: 5px; font-size: 2.5rem;">OUR PRODUCTS</h2>
         <div class="pricing-grid">
             <div class="plan">
-                <h3 style="color: var(--secondary);">LITE</h3>
-                <p>4GB RAM / 1 Core</p>
-                <h2 style="margin: 15px 0;">5.00€</h2>
-                <button class="btn">Užsakyti</button>
+                <h3 style="color: var(--accent);">STARTER</h3>
+                <p>4GB RAM / 1 CPU Core</p>
+                <h2 style="margin: 20px 0;">€5.00</h2>
+                <button class="btn">Deploy Now</button>
             </div>
-            <div class="plan" style="border-color: var(--primary); background: rgba(138, 43, 226, 0.05);">
-                <h3 style="color: var(--primary);">ULTRA</h3>
-                <p>8GB RAM / 2 Cores</p>
-                <h2 style="margin: 15px 0;">9.00€</h2>
-                <button class="btn">Užsakyti</button>
+            <div class="plan" style="border-color: var(--accent); background: rgba(138, 43, 226, 0.15);">
+                <h3 style="color: var(--accent);">ULTRA</h3>
+                <p>8GB RAM / 2 CPU Cores</p>
+                <h2 style="margin: 20px 0;">€9.00</h2>
+                <button class="btn">Deploy Now</button>
             </div>
         </div>
     </section>
 
     <section id="customizer" class="section">
-        <h2 style="text-transform: uppercase; letter-spacing: 3px;">IXON Customizer</h2>
+        <h2 style="letter-spacing: 5px; font-size: 2.5rem;">BUILD YOUR OWN</h2>
         <div class="slider-box">
             
             <div class="control-group">
-                <label>CPU Galia: <span id="cpuVal" style="color: var(--secondary);">0.5</span> Core</label>
-                <input type="range" min="0.5" max="4" step="0.5" value="0.5" oninput="calculatePrice()" id="cpuInput">
+                <label>CPU POWER: <span id="cpuVal" style="color: var(--accent);">0.5</span> CORE</label>
+                <input type="range" min="0.5" max="4" step="0.5" value="0.5" oninput="updatePrice()" id="cpuInput">
             </div>
 
             <div class="control-group">
-                <label>RAM Kiekis: <span id="ramDisplay" style="color: var(--secondary);">1</span> GB</label>
-                <input type="range" min="1" max="16" value="1" oninput="calculatePrice()" id="ramInput">
+                <label>RAM MEMORY: <span id="ramDisplay" style="color: var(--accent);">1</span> GB</label>
+                <input type="range" min="1" max="16" value="1" oninput="updatePrice()" id="ramInput">
             </div>
 
             <div class="control-group">
-                <label>Storage: <span id="storageDisplay" style="color: var(--secondary);">5</span> GB</label>
-                <input type="range" min="5" max="100" step="5" value="5" oninput="calculatePrice()" id="storageInput">
+                <label>STORAGE: <span id="storageDisplay" style="color: var(--accent);">5</span> GB</label>
+                <input type="range" min="5" max="100" step="5" value="5" oninput="updatePrice()" id="storageInput">
             </div>
 
-            <div class="price-display"><span id="totalPrice">1.50</span>€</div>
-            <p style="font-size: 0.8rem; opacity: 0.5; margin-bottom: 20px;">Kaina apskaičiuota mėnesio laikotarpiui.</p>
-            <button class="btn btn-alt" style="font-size: 1.1rem; padding: 15px;">Tęsti užsakymą</button>
+            <div class="price-display">€<span id="totalPrice">1.50</span></div>
+            <p style="opacity: 0.5; font-size: 0.8rem;">Monthly billing cycle. 99.9% Uptime guaranteed.</p>
+            <button class="btn" style="padding: 20px;">Purchase Server</button>
         </div>
     </section>
 
     <script>
-        function calculatePrice() {
+        function updatePrice() {
             const cpu = parseFloat(document.getElementById('cpuInput').value);
             const ram = parseInt(document.getElementById('ramInput').value);
             const storage = parseInt(document.getElementById('storageInput').value);
@@ -224,13 +286,13 @@
             document.getElementById('ramDisplay').innerText = ram;
             document.getElementById('storageDisplay').innerText = storage;
 
-            // KAINODAROS LOGIKA
-            const basePrice = 1.00; 
-            const cpuExtra = (cpu - 0.5) * 2.00;   
-            const ramExtra = (ram - 1) * 1.20;     
-            const storageExtra = (storage - 5) * 0.10; 
+            // Pricing Math
+            const base = 1.00;
+            const cpuCost = (cpu - 0.5) * 2.00;
+            const ramCost = (ram - 1) * 1.20;
+            const storageCost = (storage - 5) * 0.10;
 
-            const total = basePrice + cpuExtra + ramExtra + storageExtra;
+            const total = base + cpuCost + ramCost + storageCost;
             document.getElementById('totalPrice').innerText = total.toFixed(2);
         }
     </script>
